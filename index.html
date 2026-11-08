@@ -1,0 +1,458 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ماجراجویی در شورا | مأموریت ویژه رایان بلوری</title>
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <!-- Canvas Confetti Library -->
+    <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.6.0/dist/confetti.browser.min.js"></script>
+    <!-- Font Vazirmatn -->
+    <link href="https://cdn.jsdelivr.net/gh/rastikerdar/vazirmatn@v33.003/Vazirmatn-font-face.css" rel="stylesheet" type="text/css" />
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Vazirmatn', 'sans-serif'],
+                    },
+                    colors: {
+                        brand: {
+                            dark: '#0d0f1d',
+                            card: '#16192e',
+                            border: '#2a2f52',
+                            accent: '#ffd166',
+                            purple: '#7209b7',
+                            pink: '#f72585',
+                            blue: '#4cc9f0',
+                            glow: '#3a0ca3'
+                        }
+                    },
+                    boxShadow: {
+                        'neon-yellow': '0 0 15px rgba(255, 209, 102, 0.4), 0 0 30px rgba(255, 209, 102, 0.1)',
+                        'neon-purple': '0 0 20px rgba(114, 9, 183, 0.5), 0 0 40px rgba(114, 9, 183, 0.2)',
+                        'card-glow': '0 8px 32px 0 rgba(0, 0, 0, 0.37)'
+                    }
+                }
+            }
+        }
+    </script>
+    
+    <style>
+        body {
+            background-color: #0b0d19;
+            background-image: 
+                radial-gradient(circle at 15% 15%, rgba(114, 9, 183, 0.15) 0%, transparent 40%),
+                radial-gradient(circle at 85% 85%, rgba(76, 201, 240, 0.12) 0%, transparent 40%),
+                radial-gradient(circle at 50% 50%, rgba(247, 37, 133, 0.08) 0%, transparent 60%);
+            background-attachment: fixed;
+            font-family: 'Vazirmatn', sans-serif;
+            color: #f1f5f9;
+        }
+
+        .glass-card {
+            background: rgba(22, 25, 46, 0.75);
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+        }
+
+        .glow-text-yellow {
+            text-shadow: 0 0 12px rgba(255, 209, 102, 0.6);
+        }
+
+        .glow-text-purple {
+            text-shadow: 0 0 16px rgba(114, 9, 183, 0.8);
+        }
+
+        @keyframes pulseGlow {
+            0%, 100% { opacity: 0.6; transform: scale(1); }
+            50% { opacity: 0.9; transform: scale(1.02); }
+        }
+
+        .pulse-glow {
+            animation: pulseGlow 3s infinite ease-in-out;
+        }
+
+        .shake {
+            animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+        }
+
+        @keyframes shake {
+            10%, 90% { transform: translate3d(-1px, 0, 0); }
+            20%, 80% { transform: translate3d(2px, 0, 0); }
+            30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+            40%, 60% { transform: translate3d(4px, 0, 0); }
+        }
+
+        .fade-in {
+            animation: fadeIn 0.4s ease-out forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+    </style>
+</head>
+<body class="min-h-screen flex flex-col justify-between items-center p-4 sm:p-6 overflow-x-hidden">
+
+    <!-- Header / Brand -->
+    <header class="w-full max-w-xl text-center my-4">
+        <p class="text-xs sm:text-sm font-bold tracking-widest text-brand-blue uppercase mb-1">
+            SCHOOL COUNCIL • SPECIAL CHALLENGE
+        </p>
+        <h1 class="text-3xl sm:text-4xl font-extrabold text-brand-accent glow-text-yellow tracking-tight">
+            ماجراجویی در شورا
+        </h1>
+    </header>
+
+    <!-- Main Container -->
+    <main class="w-full max-w-xl my-auto">
+        
+        <!-- Progress Bar Container -->
+        <div id="progress-container" class="w-full mb-6 hidden">
+            <div class="flex justify-between items-center text-xs font-semibold text-slate-400 mb-2">
+                <span id="step-label">مرحله ۱ از ۳</span>
+                <span id="progress-percent">33%</span>
+            </div>
+            <div class="w-full bg-slate-800/80 rounded-full h-2.5 p-0.5 border border-slate-700">
+                <div id="progress-bar" class="bg-gradient-to-r from-brand-purple via-brand-pink to-brand-accent h-1.5 rounded-full transition-all duration-500 ease-out w-1/3"></div>
+            </div>
+        </div>
+
+        <!-- STEP 0: START PAGE -->
+        <div id="step-0" class="glass-card rounded-2xl p-6 sm:p-8 shadow-card-glow text-center border border-brand-border/60 fade-in relative overflow-hidden">
+            <div class="absolute -top-12 -right-12 w-32 h-32 bg-brand-purple/20 rounded-full blur-2xl pointer-events-none"></div>
+            
+            <div class="inline-flex items-center justify-center p-3 bg-brand-purple/20 border border-brand-purple/40 rounded-2xl mb-4 text-brand-accent">
+                <svg class="w-10 h-10" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"/>
+                </svg>
+            </div>
+
+            <h2 class="text-xl sm:text-2xl font-bold text-white mb-3">
+                چهار مرحله، چند چالش و یک مأموریت متفاوت!
+            </h2>
+            
+            <p class="text-sm sm:text-base text-slate-300 leading-relaxed mb-6">
+                سلام به دانش‌آموزان عزیز دبستان دکتر غلامحسین شکوهی! آیا می‌توانی با هوش خود هویت کاندیدای اصلی شورا را رمزگشایی کنی؟
+            </p>
+
+            <div class="flex flex-wrap justify-center gap-2 mb-8">
+                <span class="px-3 py-1 text-xs rounded-full bg-slate-800/90 text-slate-300 border border-slate-700">🧩 معما</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-slate-800/90 text-slate-300 border border-slate-700">💡 هوش</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-slate-800/90 text-slate-300 border border-slate-700">🎯 انتخاب</span>
+                <span class="px-3 py-1 text-xs rounded-full bg-slate-800/90 text-slate-300 border border-slate-700">🎁 غافلگیری</span>
+            </div>
+
+            <button onclick="nextStep(1)" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-bold text-base hover:opacity-90 transition-all shadow-neon-purple active:scale-98">
+                شروع مأموریت
+            </button>
+        </div>
+
+        <!-- STEP 1: PERSIAN RIDDLE -->
+        <div id="step-1" class="glass-card rounded-2xl p-6 sm:p-8 shadow-card-glow border border-brand-border/60 hidden fade-in">
+            <div class="flex items-center gap-2 text-xs font-bold text-brand-accent uppercase mb-2">
+                <span class="w-2 h-2 rounded-full bg-brand-accent inline-block"></span>
+                MISSION 01 • رمزگشایی
+            </div>
+            
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span>🔓</span> رمز ورود را پیدا کن
+            </h2>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800 mb-5">
+                <p class="text-sm text-slate-300 leading-relaxed mb-3">
+                    اسم کاندیدای ما ۵ حرفی است؛ با حرف <span class="text-brand-accent font-bold">«ر»</span> شروع می‌شود و با حرف <span class="text-brand-accent font-bold">«ن»</span> تمام می‌شود. او یک قهرمان کوچک برای مدرسه ماست. اسم او چیست؟
+                </p>
+            </div>
+
+            <div class="mb-5">
+                <label for="ans-1" class="block text-xs font-medium text-slate-400 mb-2">جواب را اینجا بنویس:</label>
+                <input type="text" id="ans-1" placeholder="مثلاً: رایان" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-center font-bold text-base transition-all"
+                    onkeypress="if(event.key==='Enter') checkStep1()" />
+            </div>
+
+            <div id="error-1" class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-800/50 p-2.5 rounded-lg mb-4 text-center"></div>
+
+            <button onclick="checkStep1()" class="w-full py-3.5 px-6 rounded-xl bg-brand-accent text-slate-950 font-bold text-base hover:bg-yellow-300 transition-all shadow-neon-yellow active:scale-98">
+                بررسی رمز
+            </button>
+        </div>
+
+        <!-- STEP 2: MULTIPLE CHOICE -->
+        <div id="step-2" class="glass-card rounded-2xl p-6 sm:p-8 shadow-card-glow border border-brand-border/60 hidden fade-in">
+            <div class="flex items-center gap-2 text-xs font-bold text-brand-blue uppercase mb-2">
+                <span class="w-2 h-2 rounded-full bg-brand-blue inline-block"></span>
+                MISSION 02 • انتخاب نماینده
+            </div>
+
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span>🎯</span> ویژگی نماینده واقعی
+            </h2>
+
+            <p class="text-sm text-slate-300 leading-relaxed mb-5">
+                کسی که برای ایده‌های خلاقانه، برنامه‌های شاد و پیگیری مشکلات واقعی آمده، چه ویژگی بارزی دارد؟
+            </p>
+
+            <div class="space-y-3 mb-6">
+                <button onclick="selectOption(this, false)" class="opt-btn w-full p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 text-right text-sm text-slate-300 transition-all flex items-center justify-between group">
+                    <span>الف) فقط به فکر برنامه‌های خودش است و به نظرات بقیه کاری ندارد.</span>
+                    <span class="w-5 h-5 rounded-full border border-slate-600 group-hover:border-slate-400 flex items-center justify-center text-xs"></span>
+                </button>
+
+                <button onclick="selectOption(this, true)" class="opt-btn w-full p-4 rounded-xl bg-slate-900/70 border border-slate-800 hover:border-slate-700 text-right text-sm text-slate-300 transition-all flex items-center justify-between group">
+                    <span>ب) یک قهرمان کوچک با ایده‌های بزرگ، پرانرژی و شنونده صدای دانش‌آموزان است.</span>
+                    <span class="w-5 h-5 rounded-full border border-slate-600 group-hover:border-slate-400 flex items-center justify-center text-xs"></span>
+                </button>
+            </div>
+
+            <div id="error-2" class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-800/50 p-2.5 rounded-lg mb-4 text-center"></div>
+
+            <button onclick="checkStep2()" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-bold text-base hover:opacity-90 transition-all shadow-neon-purple active:scale-98">
+                ثبت انتخاب
+            </button>
+        </div>
+
+        <!-- STEP 3: LAST NAME PUZZLE -->
+        <div id="step-3" class="glass-card rounded-2xl p-6 sm:p-8 shadow-card-glow border border-brand-border/60 hidden fade-in">
+            <div class="flex items-center gap-2 text-xs font-bold text-brand-pink uppercase mb-2">
+                <span class="w-2 h-2 rounded-full bg-brand-pink inline-block"></span>
+                MISSION 03 • کلید نهایی
+            </div>
+
+            <h2 class="text-lg sm:text-xl font-bold text-white mb-4 flex items-center gap-2">
+                <span>💎</span> راز سنگ درخشان
+            </h2>
+
+            <div class="bg-slate-900/80 rounded-xl p-4 border border-slate-800 mb-5">
+                <p class="text-sm text-slate-300 leading-relaxed">
+                    نام خانوادگی این کاندیدا تداعی‌کننده شفافیت، درخشندگی و زلالی یک کریستال است که ما را به یاد کریستال‌های درخشان و شفاف طبیعت می‌اندازد. فامیلی او چیست؟
+                </p>
+            </div>
+
+            <div class="mb-5">
+                <label for="ans-3" class="block text-xs font-medium text-slate-400 mb-2">نام خانوادگی را وارد کنید:</label>
+                <input type="text" id="ans-3" placeholder="مثلاً: بلوری یا BOLOURI" 
+                    class="w-full px-4 py-3 rounded-xl bg-slate-900/90 border border-slate-700 text-white placeholder-slate-500 focus:outline-none focus:border-brand-accent focus:ring-1 focus:ring-brand-accent text-center font-bold text-base transition-all"
+                    onkeypress="if(event.key==='Enter') checkStep3()" />
+            </div>
+
+            <div id="error-3" class="hidden text-xs text-rose-400 bg-rose-950/40 border border-rose-800/50 p-2.5 rounded-lg mb-4 text-center"></div>
+
+            <button onclick="checkStep3()" class="w-full py-3.5 px-6 rounded-xl bg-brand-accent text-slate-950 font-bold text-base hover:bg-yellow-300 transition-all shadow-neon-yellow active:scale-98">
+                رمزگشایی نهایی
+            </button>
+        </div>
+
+        <!-- STEP 4: VICTORY / FINAL CARD -->
+        <div id="step-4" class="glass-card rounded-2xl p-6 sm:p-8 shadow-card-glow border border-brand-accent/40 text-center hidden fade-in relative overflow-hidden">
+            
+            <div class="inline-flex items-center justify-center p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-full mb-3 text-emerald-400">
+                <svg class="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"/>
+                </svg>
+            </div>
+
+            <p class="text-xs font-bold text-emerald-400 tracking-wider uppercase mb-1">مأموریت با موفقیت انجام شد!</p>
+            <h2 class="text-xl sm:text-2xl font-extrabold text-white mb-4">قهرمان شورا پیدا شد 🏆</h2>
+
+            <!-- Final Candidate Badge Card with Circular Photo -->
+            <div class="bg-gradient-to-b from-slate-900 to-slate-950 p-5 rounded-2xl border border-brand-accent/30 mb-6 relative group">
+                <div class="absolute inset-0 bg-brand-purple/10 rounded-2xl blur-lg pointer-events-none"></div>
+                
+                <div class="relative z-10">
+                    <!-- قاب عکس دایره‌ای رایان -->
+                    <div class="w-24 h-24 mx-auto mb-3 rounded-full p-0.5 bg-gradient-to-tr from-brand-purple to-brand-accent shadow-neon-purple overflow-hidden flex items-center justify-center">
+                        <img src="rayan.jpg" alt="رایان بلوری" class="w-full h-full object-cover rounded-full bg-slate-900" onerror="this.style.display='none'; this.parentElement.innerHTML='<span class=\'text-2xl\'>🕶️</span>';">
+                    </div>
+
+                    <h3 class="text-2xl font-black text-brand-accent glow-text-yellow mb-1">
+                        رایان بلوری
+                    </h3>
+                    <p class="text-xs sm:text-sm text-slate-300 font-medium mb-3">
+                        کاندیدای شورای دانش‌آموزی (دبستان دکتر غلامحسین شکوهی)
+                    </p>
+
+                    <div class="py-2.5 px-3 bg-brand-purple/20 rounded-xl border border-brand-purple/40 text-xs sm:text-sm text-slate-200 font-bold mb-2">
+                        «رایان بلوری: یک قهرمان کوچک برای یک مدرسه بزرگ! ✨»
+                    </div>
+
+                    <p class="text-xs text-slate-400">
+                        شنیدن صدای شما • ایده‌های خلاقانه • فعالیت‌های شاد • پیگیری مشکلات
+                    </p>
+                </div>
+            </div>
+
+            <!-- Share / Action Buttons -->
+            <div class="space-y-2.5">
+                <button onclick="copyShareText()" class="w-full py-3.5 px-6 rounded-xl bg-gradient-to-r from-brand-purple to-brand-pink text-white font-bold text-sm hover:opacity-90 transition-all shadow-neon-purple active:scale-98 flex items-center justify-center gap-2">
+                    <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 5H6a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2v-1M8 5a2 2 0 012-2h2a2 2 0 012 2M8 5a2 2 0 012-2h2a2 2 0 012 2m0 0h2a2 2 0 012 2v3m2 4H10m0 0l3-3m-3 3l3 3"/></svg>
+                    اشتراک‌گذاری در شاد / کپی متن
+                </button>
+                
+                <button onclick="restartGame()" class="w-full py-2.5 px-4 rounded-xl bg-slate-900 border border-slate-800 text-xs text-slate-400 hover:text-slate-200 transition-all">
+                    تکرار مجدد چالش 🔄
+                </button>
+            </div>
+
+            <div id="toast" class="hidden fixed bottom-6 left-1/2 -translate-x-1/2 bg-slate-900 border border-brand-accent text-brand-accent text-xs px-4 py-2 rounded-full shadow-lg">
+                متن دعوتنامه کپی شد!
+            </div>
+        </div>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="my-4 text-center text-xs text-slate-500">
+        کمپین انتخاباتی رایان بلوری • شورای دانش‌آموزی
+    </footer>
+
+    <!-- Logic Script -->
+    <script>
+        let currentStep = 0;
+        let selectedTraitOption = null;
+
+        function updateProgress(step) {
+            const container = document.getElementById('progress-container');
+            const progressBar = document.getElementById('progress-bar');
+            const stepLabel = document.getElementById('step-label');
+            const progressPercent = document.getElementById('progress-percent');
+
+            if (step === 0 || step === 4) {
+                container.classList.add('hidden');
+            } else {
+                container.classList.remove('hidden');
+                const percent = Math.round((step / 3) * 100);
+                progressBar.style.width = percent + '%';
+                stepLabel.textContent = `مرحله ${step} از ۳`;
+                progressPercent.textContent = `${percent}%`;
+            }
+        }
+
+        function nextStep(step) {
+            document.querySelectorAll('main > div[id^="step-"]').forEach(el => el.classList.add('hidden'));
+            
+            const target = document.getElementById(`step-${step}`);
+            if (target) {
+                target.classList.remove('hidden');
+                currentStep = step;
+                updateProgress(step);
+            }
+
+            if (step === 4) {
+                triggerConfetti();
+            }
+        }
+
+        // STEP 1 Validation
+        function checkStep1() {
+            const val = document.getElementById('ans-1').value.trim().toLowerCase();
+            const err = document.getElementById('error-1');
+            
+            if (val === 'رایان' || val === 'rayan') {
+                err.classList.add('hidden');
+                nextStep(2);
+            } else {
+                err.textContent = '❌ پاسخ اشتباه است! راهنمایی: اسمش با «ر» شروع می‌شود و با «ن» تمام می‌شود.';
+                err.classList.remove('hidden');
+                shakeElement(document.getElementById('step-1'));
+            }
+        }
+
+        // STEP 2 Option Selection & Validation
+        function selectOption(btn, isCorrect) {
+            document.querySelectorAll('.opt-btn').forEach(b => {
+                b.classList.remove('border-brand-accent', 'bg-brand-purple/20', 'text-white');
+                b.classList.add('border-slate-800', 'text-slate-300');
+                b.querySelector('span:last-child').innerHTML = '';
+            });
+
+            btn.classList.remove('border-slate-800', 'text-slate-300');
+            btn.classList.add('border-brand-accent', 'bg-brand-purple/20', 'text-white');
+            btn.querySelector('span:last-child').innerHTML = '✓';
+
+            selectedTraitOption = isCorrect;
+            document.getElementById('error-2').classList.add('hidden');
+        }
+
+        function checkStep2() {
+            const err = document.getElementById('error-2');
+            if (selectedTraitOption === null) {
+                err.textContent = 'لطفاً یکی از گزینه‌ها را انتخاب کنید!';
+                err.classList.remove('hidden');
+                shakeElement(document.getElementById('step-2'));
+            } else if (selectedTraitOption === true) {
+                err.classList.add('hidden');
+                nextStep(3);
+            } else {
+                err.textContent = '❌ این ویژگی یک نماینده واقعی شورا نیست! دوباره تلاش کن.';
+                err.classList.remove('hidden');
+                shakeElement(document.getElementById('step-2'));
+            }
+        }
+
+        // STEP 3 Validation
+        function checkStep3() {
+            const val = document.getElementById('ans-3').value.trim().toLowerCase();
+            const err = document.getElementById('error-3');
+
+            if (val === 'بلوری' || val === 'bolouri' || val === 'boluri') {
+                err.classList.add('hidden');
+                nextStep(4);
+            } else {
+                err.textContent = '❌ پاسخ نادرست است! راهنمایی: فامیلی شبیه کلمه «بلور» است.';
+                err.classList.remove('hidden');
+                shakeElement(document.getElementById('step-3'));
+            }
+        }
+
+        // Shake Error Effect
+        function shakeElement(el) {
+            el.classList.remove('shake');
+            void el.offsetWidth;
+            el.classList.add('shake');
+        }
+
+        // Confetti Fireworks
+        function triggerConfetti() {
+            if (typeof confetti === 'function') {
+                confetti({
+                    particleCount: 80,
+                    spread: 70,
+                    origin: { y: 0.6 },
+                    colors: ['#ffd166', '#f72585', '#7209b7', '#4cc9f0']
+                });
+            }
+        }
+
+        // Copy Share Text
+        function copyShareText() {
+            const shareText = `🚨 فوری و محرمانه؛ آغاز چالشِ «ماجراجویی در شورا»! 🕵️‍♂️\n\nقابل توجه دانش‌آموزان عزیز دبستان دکتر غلامحسین شکوهی!\nرایان بلوری: یک قهرمان کوچک برای یک مدرسه بزرگ! ✨\n\n🗝️ برای ورود به اتاق فرارِ آنلاین و رمزگشایی هویت کاندیدا، روی لینک زیر کلیک کنید:\n🔗 ` + window.location.href + `\n\n⏱️ زمان محدود است! ببینم اولین نفری که مأموریت را تمام می‌کند چه کسی است...`;
+            
+            navigator.clipboard.writeText(shareText).then(() => {
+                const toast = document.getElementById('toast');
+                toast.classList.remove('hidden');
+                setTimeout(() => toast.classList.add('hidden'), 3000);
+            });
+        }
+
+        // Restart Game
+        function restartGame() {
+            document.getElementById('ans-1').value = '';
+            document.getElementById('ans-3').value = '';
+            selectedTraitOption = null;
+            document.querySelectorAll('.opt-btn').forEach(b => {
+                b.classList.remove('border-brand-accent', 'bg-brand-purple/20', 'text-white');
+                b.classList.add('border-slate-800', 'text-slate-300');
+                b.querySelector('span:last-child').innerHTML = '';
+            });
+            nextStep(0);
+        }
+    </script>
+</body>
+</html>
